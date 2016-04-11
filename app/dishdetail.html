@@ -46,7 +46,17 @@
                 <h3>Customer comments</h3>
                 <p>
                     <label for="search">Sort by</label>
-                    <input type="text" id="search" ng-model="commentSearch">
+                    <select name="search" id="search" ng-model="commentSearch">
+                        <option value="">---Please select---</option>
+                        <!-- not selected / blank option -->
+                        <option value="author">Author: A-Z</option>
+                        <option value="-author">Author: Z-A</option>
+                        <option value="rating">Rating: Low to High</option>
+                        <option value="-rating">Rating: High to Low</option>
+                        <option value="date">Date: Most Recent First</option>
+                        <option value="-date">Date: Oldest First</option>
+                    </select>
+                    <br>
                 </p>
                 <blockquote ng-repeat="comment in dish.comments | orderBy:commentSearch">
                     <p>{{comment.rating}} Stars</p>
