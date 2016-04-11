@@ -26,19 +26,19 @@
 <body>
 
     <div class="container">
-        <div class="row row-content" ng-controller="dishDetailController as d">
+        <div class="row row-content" ng-controller="dishDetailController">
             <div class="col-xs-12">
                 <div class="media">
                     <div class="media-left media-middle">
                         <a href="#">
-                            <img class="media-object img-thumbnail" ng-src={{d.dish.image}} alt="Uthappizza">
+                            <img class="media-object img-thumbnail" ng-src={{dish.image}} alt="{{dish.name}}">
                         </a>
                     </div>
                     <div class="media-body">
-                        <h2 class="media-heading">{{d.dish.name}}
-                         <span class="label label-danger">{{d.dish.label}}</span>
-                         <span class="badge">{{d.dish.price | currency}}</span></h2>
-                        <p>{{d.dish.description}}</p>
+                        <h2 class="media-heading">{{dish.name}}
+                         <span class="label label-danger">{{dish.label}}</span>
+                         <span class="badge">{{dish.price | currency}}</span></h2>
+                        <p>{{dish.description}}</p>
                     </div>
                 </div>
             </div>
@@ -48,7 +48,7 @@
                     <label for="search">Sort by</label>
                     <input type="text" id="search" ng-model="commentSearch">
                 </p>
-                <blockquote ng-repeat="comment in d.dish.comments | orderBy:commentSearch">
+                <blockquote ng-repeat="comment in dish.comments | orderBy:commentSearch">
                     <p>{{comment.rating}} Stars</p>
                     <p>{{comment.comment}}</p>
                     <footer>
@@ -62,7 +62,7 @@
     <script src="../bower_components/angular/angular.min.js"></script>
     <script>
         var app = angular.module('confusionApp', []);
-        app.controller('dishDetailController', function() {
+        app.controller('dishDetailController', ["$scope", function($scope) {
 
             var dish = {
                 name: 'Uthapizza',
@@ -101,8 +101,8 @@
                 ]
             };
 
-            this.dish = dish;
-        });
+            $scope.dish = dish;
+        }]);
     </script>
 
 </body>

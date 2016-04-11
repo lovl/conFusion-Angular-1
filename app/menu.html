@@ -26,22 +26,22 @@
 <body>
 
     <div class="container">
-        <div class="row row-content" ng-controller="menuController as menuCtrl">
+        <div class="row row-content" ng-controller="menuController">
             <div class="col-xs-12">
                 <div class="tab-content">
                     <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" ng-class="{active:menuCtrl.isSelected(1)}">
-                            <a ng-click="menuCtrl.select(1)" aria-controls="all menu" role="tab">The Menu</a></li>
-                        <li role="presentation" ng-class="{active:menuCtrl.isSelected(2)}">
-                            <a ng-click="menuCtrl.select(2)" aria-controls="appetizers" role="tab">Appetizers</a></li>
-                        <li role="presentation" ng-class="{active:menuCtrl.isSelected(3)}">
-                            <a ng-click="menuCtrl.select(3)" aria-controls="mains" role="tab">Mains</a></li>
-                        <li role="presentation" ng-class="{active:menuCtrl.isSelected(4)}">
-                            <a ng-click="menuCtrl.select(4)" aria-controls="desserts" role="tab">Desserts</a></li>
+                        <li role="presentation" ng-class="{active: isSelected(1)}">
+                            <a ng-click="select(1)" aria-controls="all menu" role="tab">The Menu</a></li>
+                        <li role="presentation" ng-class="{active: isSelected(2)}">
+                            <a ng-click="select(2)" aria-controls="appetizers" role="tab">Appetizers</a></li>
+                        <li role="presentation" ng-class="{active: isSelected(3)}">
+                            <a ng-click="select(3)" aria-controls="mains" role="tab">Mains</a></li>
+                        <li role="presentation" ng-class="{active: isSelected(4)}">
+                            <a ng-click="select(4)" aria-controls="desserts" role="tab">Desserts</a></li>
                     </ul>
                 </div>
                 <ul class="media-list">
-                    <li class="media" ng-repeat="dish in menuCtrl.dishes | filter:menuCtrl.filtText">
+                    <li class="media" ng-repeat="dish in dishes | filter:filtText">
                         <div class="media-left media-middle">
                             <a href="#">
                                 <img class="media-object img-thumbnail" ng-src={{dish.image}} alt="Uthappizza">
@@ -62,23 +62,23 @@
     <script src="../bower_components/angular/angular.min.js"></script>
     <script>
         var app = angular.module('confusionApp', []);
-        app.controller('menuController', function() {
-            this.tab = 1;
-            this.filtText = '';
-            this.select = function(setTab) {
-                this.tab = setTab;
+        app.controller('menuController', ["$scope", function($scope) {
+            $scope.tab = 1;
+            $scope.filtText = '';
+            $scope.select = function(setTab) {
+                $scope.tab = setTab;
 
                 if (setTab === 2)
-                    this.filtText = "appetizer";
+                    $scope.filtText = "appetizer";
                 else if (setTab === 3)
-                    this.filtText = "mains";
+                    $scope.filtText = "mains";
                 else if (setTab === 4)
-                    this.filtText = "dessert";
+                    $scope.filtText = "dessert";
                 else
-                    this.filtText = "";
+                    $scope.filtText = "";
             }
-            this.isSelected = function(checkTab) {
-                return (this.tab === checkTab);
+            $scope.isSelected = function(checkTab) {
+                return ($scope.tab === checkTab);
             }
             var dishes = [{
                 name: 'Uthapizza',
@@ -114,8 +114,8 @@
                 comment: ''
             }];
 
-            this.dishes = dishes;
-        });
+            $scope.dishes = dishes;
+        }]);
     </script>
 </body>
 
