@@ -102,3 +102,18 @@ app.controller('dishDetailController', ["$scope", function ($scope) {
 
     $scope.dish = dish;
 }]);
+
+app.controller('ContactController', ['$scope', function ($scope) {
+
+    $scope.feedback = {
+        mychannel: "",
+        firstName: "",
+        lastName: "",
+        agree: false,
+        email: ""
+    };
+}]);
+
+app.controller('FeedbackController', ['$scope', function ($scope) {
+
+}]);
