@@ -1,4 +1,4 @@
-app.controller('menuController', ["$scope", function ($scope) {
+app.controller('MenuController', ["$scope", function ($scope) {
     $scope.tab = 1;
     $scope.filtText = '';
     $scope.showDetails = false;
@@ -61,8 +61,28 @@ app.controller('menuController', ["$scope", function ($scope) {
     $scope.dishes = dishes;
 }]);
 
-app.controller('dishDetailController', ["$scope", function ($scope) {
+app.controller('DishDetailController', ["$scope", function ($scope) {
 
+    $scope.comment = {
+        rating: 5,
+        comment: "",
+        author: "",
+        date: ""
+    };
+
+    $scope.submitComment = function () {
+        $scope.comment.date = new Date().toISOString();
+        console.log($scope.comment);
+        $scope.dish.comments.push($scope.comment);
+        $scope.commentForm.$setPristine();
+        $scope.comment = {
+            rating: 5,
+            comment: "",
+            author: "",
+            date: ""
+        };
+    }
+    
     var dish = {
         name: 'Uthapizza',
         image: 'images/uthapizza.png',
