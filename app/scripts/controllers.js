@@ -24,10 +24,10 @@ app.controller('MenuController', ["$scope", "menuService", function ($scope, men
         $scope.showDetails = !$scope.showDetails;
     };
 
-    $scope.dishes= menuService.getDishes();
+    $scope.dishes = menuService.getDishes();
 }]);
 
-app.controller('DishDetailController', ["$scope", "menuService", function ($scope, menuService) {
+app.controller('DishDetailController', ["$scope", "$stateParams", "menuService", function ($scope, $stateParams, menuService) {
 
     $scope.comment = {
         rating: 5,
@@ -48,8 +48,8 @@ app.controller('DishDetailController', ["$scope", "menuService", function ($scop
             date: ""
         };
     }
-                                        
-    $scope.dish= menuFactory.getDish(3);
+
+    $scope.dish = menuService.getDish(parseInt($stateParams.id, 10));
 }]);
 
 app.controller('ContactController', ['$scope', function ($scope) {
@@ -60,7 +60,7 @@ app.controller('ContactController', ['$scope', function ($scope) {
         agree: false,
         email: ""
     };
-    
+
     var channels = [{
         value: "tel",
         label: "Tel."
@@ -68,7 +68,7 @@ app.controller('ContactController', ['$scope', function ($scope) {
         value: "Email",
         label: "Email"
         }];
-    
+
     $scope.channels = channels;
     $scope.invalidChannelSelection = false;
 }]);
