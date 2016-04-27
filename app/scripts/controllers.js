@@ -101,3 +101,7 @@ app.controller('IndexController', ['$scope', 'corporateService', 'menuService', 
     $scope.leader = corporateService.getLeader(0);
     $scope.promo = menuService.getPromotion();
 }]);
+
+app.controller('AboutController', ['$scope', 'corporateService', function ($scope, corporateService) {
+    $scope.leaders = corporateService.getLeaders();
+}]);
