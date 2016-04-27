@@ -179,12 +179,12 @@ app.service('menuService', function () {
         return dishes[index];
     };
 
+    this.getPromotion = function () {
+        return promotions[0];
+    }
 });
 
-app.factory('corporateFactory', function () {
-
-    var corpfac = {};
-
+app.service('corporateService', function () {
     var leadership = [
         {
             name: "Peter Pan",
@@ -218,5 +218,10 @@ app.factory('corporateFactory', function () {
     // Implement two functions, one named getLeaders,
     // the other named getLeader(index)
     // Remember this is a factory not a service
-
+    this.getLeaders = function () {
+        return leadership;
+    }
+    this.getLeader = function (index) {
+        return leadership[index];
+    }
 });

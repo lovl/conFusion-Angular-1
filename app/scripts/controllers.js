@@ -95,3 +95,9 @@ app.controller('FeedbackController', ['$scope', function ($scope) {
         }
     };
 }]);
+
+app.controller('IndexController', ['$scope', 'corporateService', 'menuService', function ($scope, corporateService, menuService) {
+    $scope.dish = menuService.getDish(0);
+    $scope.leader = corporateService.getLeader(0);
+    $scope.promo = menuService.getPromotion();
+}]);
