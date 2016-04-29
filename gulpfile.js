@@ -1,3 +1,6 @@
+// Solve the compatible problem on Ubuntu
+require('es6-promise').polyfill();
+
 var gulp = require('gulp'),
     minifycss = require('gulp-minify-css'),
     jshint = require('gulp-jshint'),
