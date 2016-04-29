@@ -181,7 +181,7 @@ app.service('menuService', function () {
 
     this.getPromotion = function () {
         return promotions[0];
-    }
+    };
 });
 
 app.service('corporateService', function () {
@@ -220,8 +220,9 @@ app.service('corporateService', function () {
     // Remember this is a factory not a service
     this.getLeaders = function () {
         return leadership;
-    }
+    };
+    
     this.getLeader = function (index) {
         return leadership[index];
-    }
+    };
 });

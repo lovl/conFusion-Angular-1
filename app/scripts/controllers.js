@@ -47,7 +47,7 @@ app.controller('DishDetailController', ["$scope", "$stateParams", "menuService",
             author: "",
             date: ""
         };
-    }
+    };
 
     $scope.dish = menuService.getDish(parseInt($stateParams.id, 10));
 }]);
@@ -76,7 +76,7 @@ app.controller('ContactController', ['$scope', function ($scope) {
 app.controller('FeedbackController', ['$scope', function ($scope) {
     $scope.sendFeedback = function () {
         console.log($scope.feedback);
-        if ($scope.feedback.agree && ($scope.feedback.mychannel == "") && !$scope.feedback.mychannel) {
+        if ($scope.feedback.agree && ($scope.feedback.mychannel === "") && !$scope.feedback.mychannel) {
             $scope.invalidChannelSelection = true;
             console.log('incorrect');
         } else {
