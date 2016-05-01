@@ -49,6 +49,11 @@ app.controller('DishDetailController', ["$scope", "$stateParams", "menuService",
         $scope.comment.date = new Date().toISOString();
         console.log($scope.comment);
         $scope.dish.comments.push($scope.comment);
+
+        menuService.getDishes().update({
+            id: $scope.dish.id
+        }, $scope.dish);
+
         $scope.commentForm.$setPristine();
         $scope.comment = {
             rating: 5,
