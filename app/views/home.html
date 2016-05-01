@@ -12,10 +12,10 @@
             <h3 align=center>Our Lipsmacking Culinary Creations</h3>
         </div>
         <div class="col-xs-12 col-sm-9 col-sm-pull-3">
+            <p style="padding:20px;"></p>
             <div ng-if="!showDish">
                 <h3>{{message}}</h3>
             </div>
-            <p style="padding:20px;"></p>
             <div class="media" ng-if="showDish">
                 <div class="media-left media-middle">
                     <a ui-sref="app.dishdetails({id: dish.id})">
@@ -40,7 +40,10 @@
         </div>
         <div class="col-xs-12 col-sm-9">
             <p style="padding:20px;"></p>
-            <div class="media">
+            <div ng-if="!showPromotion">
+                <h3>{{message}}</h3>
+            </div>
+            <div class="media" ng-if="showPromotion">
                 <div class="media-left media-middle">
                     <a ui-sref="app.dishdetails({id: promotion.id})">
                         <img class="media-object img-thumbnail" ng-src={{promotion.image}} alt="{{promo.name}}">
@@ -64,7 +67,10 @@
         </div>
         <div class="col-xs-12 col-sm-9 col-sm-pull-3">
             <p style="padding:20px;"></p>
-            <div class="media">
+            <div ng-if="!showLeader">
+                <h3>{{message}}</h3>
+            </div>
+            <div class="media" ng-if="showLeader">
                 <div class="media-left media-middle">
                     <a>
                         <img class="media-object img-thumbnail" ng-src={{leader.image}} alt="{{leader.name}}">

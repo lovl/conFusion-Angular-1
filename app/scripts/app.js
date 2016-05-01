@@ -1,6 +1,6 @@
 var app = angular.module('confusionApp', ['ui.router', 'ngResource']);
 
-app.config(function ($stateProvider, $urlRouterProvider) {
+app.config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
         // route for the home page
         .state('app', {

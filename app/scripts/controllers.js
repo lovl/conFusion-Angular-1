@@ -121,7 +121,20 @@ app.controller('FeedbackController', ['$scope', function($scope) {
 app.controller('IndexController', ['$scope', 'corporateService', 'menuService', function($scope, corporateService, menuService) {
 
     // leader
-    $scope.leader = corporateService.getLeader(0);
+    $scope.showLeader = false;
+    $scope.message = "Loading ...";
+    $scope.leader = corporateService.getLeaders().get({
+            id: 0
+        })
+        .$promise.then(
+            function(response) {
+                $scope.leader = response;
+                $scope.showLeader = true;
+            },
+            function(response) {
+                $scope.message = "Error: " + response.status + " " + response.statusText;
+            }
+        );
 
     // dish
     $scope.showDish = false;
@@ -140,12 +153,15 @@ app.controller('IndexController', ['$scope', 'corporateService', 'menuService', 
         );
 
     // promotion
+    $scope.showPromotion = false;
+    $scope.message = "Loading ...";
     $scope.promotion = menuService.getPromotion().get({
             id: 0
         })
         .$promise.then(
             function(response) {
                 $scope.promotion = response;
+                $scope.showPromotion = true;
             },
             function(response) {
                 $scope.message = "Error: " + response.status + " " + response.statusText;
@@ -154,5 +170,15 @@ app.controller('IndexController', ['$scope', 'corporateService', 'menuService', 
 }]);
 
 app.controller('AboutController', ['$scope', 'corporateService', function($scope, corporateService) {
-    $scope.leaders = corporateService.getLeaders();
+    // leader
+    $scope.showLeader = false;
+    $scope.message = "Loading ...";
+    corporateService.getLeaders().query(
+        function(response) {
+            $scope.leaders = response;
+            $scope.showLeader = true;
+        },
+        function(response) {
+            $scope.message = "Error: " + response.status + " " + response.statusText;
+        });
 }]);
