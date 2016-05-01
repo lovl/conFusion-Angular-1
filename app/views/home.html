@@ -12,10 +12,13 @@
             <h3 align=center>Our Lipsmacking Culinary Creations</h3>
         </div>
         <div class="col-xs-12 col-sm-9 col-sm-pull-3">
+            <div ng-if="!showDish">
+                <h3>{{message}}</h3>
+            </div>
             <p style="padding:20px;"></p>
-            <div class="media">
+            <div class="media" ng-if="showDish">
                 <div class="media-left media-middle">
-                    <a ui-sref="app.dishdetails({id: dish._id})">
+                    <a ui-sref="app.dishdetails({id: dish.id})">
                         <img class="media-object img-thumbnail" ng-src={{dish.image}} alt="{{dish.name}}">
                     </a>
                 </div>
@@ -39,16 +42,16 @@
             <p style="padding:20px;"></p>
             <div class="media">
                 <div class="media-left media-middle">
-                    <a ui-sref="app.dishdetails({id: promo._id})">
-                        <img class="media-object img-thumbnail" ng-src={{promo.image}} alt="{{promo.name}}">
+                    <a ui-sref="app.dishdetails({id: promotion.id})">
+                        <img class="media-object img-thumbnail" ng-src={{promotion.image}} alt="{{promo.name}}">
                     </a>
                 </div>
                 <div class="media-body">
-                    <h2 class="media-heading">{{promo.name}}
-                         <span class="label label-danger">{{promo.label}}</span>
-                         <span class="badge">{{promo.price | currency}}</span></h2>
+                    <h2 class="media-heading">{{promotion.name}}
+                         <span class="label label-danger">{{promotion.label}}</span>
+                         <span class="badge">{{promotion.price | currency}}</span></h2>
                     <br>
-                    <p>{{promo.description}}</p>
+                    <p>{{promotion.description}}</p>
                 </div>
             </div>
         </div>
