@@ -89,7 +89,7 @@ app.controller('ContactController', ['$scope', function($scope) {
     };
 
     var channels = [{
-        value: "tel",
+        value: "Tel.",
         label: "Tel."
     }, {
         value: "Email",
@@ -98,6 +98,36 @@ app.controller('ContactController', ['$scope', function($scope) {
 
     $scope.channels = channels;
     $scope.invalidChannelSelection = false;
+
+    $scope.sendFeedback = function() {
+
+        console.log($scope.feedback);
+        if ($scope.feedback.agree && ($scope.feedback.mychannel === "")) {
+            $scope.invalidChannelSelection = true;
+            console.log('incorrect');
+        } else {
+            $scope.invalidChannelSelection = false;
+            feedbackService.postFeedback().post({
+                firstName: $scope.feedback.firstName
+            }, $scope.feedback);
+            $scope.feedback = {
+                comments: "",
+                mychannel: "",
+                firstName: "",
+                lastName: "",
+                agree: false,
+                email: "",
+                tel: {
+                    areacode: "",
+                    number: ""
+                }
+            };
+            $scope.feedback.mychannel = "";
+            alert("We have received your feedback!");
+            $scope.feedbackForm.$setPristine();
+        }
+    };
+
 }]);
 
 app.controller('FeedbackController', ['$scope', function($scope) {

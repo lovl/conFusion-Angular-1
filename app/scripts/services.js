@@ -17,6 +17,7 @@ app.service('menuService', ['$resource', 'baseURL', function($resource, baseURL)
             }
         });
     };
+
 }]);
 
 app.service('corporateService', ['$resource', 'baseURL', function($resource, baseURL) {
@@ -28,4 +29,17 @@ app.service('corporateService', ['$resource', 'baseURL', function($resource, bas
             }
         });
     };
+
+}]);
+
+app.service('feedbackService', ['$resource', 'baseURL', function($resource, baseURL) {
+
+    this.postFeedback = function() {
+        return $resource(baseURL + "feedback/", null, {
+            'post': {
+                method: 'POST'
+            }
+        });
+    };
+
 }]);
